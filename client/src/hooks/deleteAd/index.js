@@ -1,0 +1,1 @@
+const Preview = ({ ad }) => {};

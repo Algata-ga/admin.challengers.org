@@ -1,5 +1,0 @@
-bcrypt
-PyMySQL
-flask
-flask_cors
-

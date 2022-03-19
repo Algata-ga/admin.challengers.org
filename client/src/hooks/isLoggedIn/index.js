@@ -1,9 +1,13 @@
 import { useQuery } from "react-query";
 
 const isLoggedIn = async () => {
-    const response = await fetch("http://localhost:5000/isLoggedIn", {
-        credentials: "include",
-    });
+    console.log(import.meta.env);
+    const response = await fetch(
+        import.meta.env.VITE_API_BASE_URL + "/isLoggedIn",
+        {
+            credentials: "include",
+        }
+    );
     const data = await response.json();
     return data.loggedIn;
 };

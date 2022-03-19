@@ -1,7 +1,7 @@
 import useMutation from "react-query";
 
 const logout = async () => {
-    const response = await fetch("localhost:5000/logout");
+    const response = await fetch(import.meta.env.VITE_API_BASE_URL + "/logout");
     return response;
 };
 

@@ -5,10 +5,7 @@ const AdView = ({ ad, dash }) => {
             <p>{ad.description}</p>
             <img
                 src={
-                    dash
-                        ? "http://localhost:5000" +
-                          ad.filename.replace("/api", "")
-                        : ad.media
+                    dash ? "http://localhost:5000/ad/" + ad.filename : ad.media
                 }
                 alt={ad.title}
                 loading="lazy"

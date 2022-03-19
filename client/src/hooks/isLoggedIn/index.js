@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 
 const isLoggedIn = async () => {
-    console.log(import.meta.env);
+    console.log(import.meta.env.VITE_API_BASE_URL + 'fff');
     const response = await fetch(
         import.meta.env.VITE_API_BASE_URL + "/isLoggedIn",
         {

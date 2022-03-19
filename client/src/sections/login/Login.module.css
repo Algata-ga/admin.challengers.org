@@ -1,0 +1,51 @@
+.section{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    width: 45px;
+    height: auto;
+}
+.formbox{
+    max-width: 40rem;
+    width: 60%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    border: 2px solid black;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-top: 10%;
+    
+}
+.form input{
+    margin-top: 45px;
+    height: 45px;
+    background: #ededed;;
+    text-align: center;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+
+}
+.form ::placeholder,::-webkit-input-placeholder,:-moz-placeholder,::-moz-placeholder,:-ms-input-placeholder{
+    color: black;
+    border-radius: 15px;
+}
+.form input[type=submit]{
+    width: 50%;
+    align-self: center;
+    background: black;
+    color: white;
+    margin-bottom: 10%;
+}

@@ -1,0 +1,45 @@
+.header {
+    height: 60px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    width: 45px;
+    height: auto;
+}
+
+.link {
+    position: relative;
+    top: 2px;
+    font-size: 2.5rem;
+    padding: 10px;
+    color: black;
+}
+
+.link:hover {
+    color: #bdbdbd;
+
+}
+
+.logout {
+    font-size: 2rem;
+    font-weight: bolder;
+    margin-left: 10px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+    border: none;
+    color: white;
+}
+
+.logout:hover {
+    background: #bdbdbd;
+}

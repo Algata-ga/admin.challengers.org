@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AdView } from "../../components";
 
 import { useReducer, useEffect } from "react";
+import style from "./Upload.module.css"
 
 const Upload = () => {
     const navigate = useNavigate();
@@ -39,33 +40,45 @@ const Upload = () => {
     if (upload.isLoading) return <h1>Loading</h1>;
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label name="title">Title</label>
-                <input
-                    name="title"
-                    onChange={(e) => updateAd({ title: e.target.value })}
-                />
-                <label name="description">Description</label>
-                <input
-                    name="description"
-                    onChange={(e) => updateAd({ description: e.target.value })}
-                />
-                <label name="media">File</label>
-                <input
-                    name="media"
-                    type="file"
-                    onChange={(e) =>
-                        updateAd({
-                            media: URL.createObjectURL(e.target.files[0]),
-                        })
-                    }
-                />
-                <input type="submit" />
-            </form>
-            <AdView ad={ad} />
-        </div>
+        <section className={style.page}>
+            <div className={style.half1}>
+                <form className={style.form} onSubmit={handleSubmit}>
+                    <label name="media">Upload</label>
+                    <input
+                        name="media"
+                        type="file"
+                        onChange={(e) =>
+                            updateAd({
+                                media: URL.createObjectURL(e.target.files[0]),
+                            })
+                        }
+
+                    />
+                    <button>
+                        Upload File
+                    </button>
+                    <label name="title">Title</label>
+                    <input
+                        name="title"
+                        onChange={(e) => updateAd({ title: e.target.value })}
+                    />
+                    <label name="description">Description</label>
+                    <input
+                        name="description"
+                        onChange={(e) => updateAd({ description: e.target.value })}
+                    />
+                    <input type="submit" />
+                </form>
+            </div>
+            <div className={style.half2}>
+                <h2>Preview</h2>
+                <div className={style.card}>
+                    <AdView ad={ad} />
+                </div>
+            </div>
+        </section>
     );
 };
 
 export default Upload;
+

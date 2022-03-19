@@ -1,5 +1,7 @@
 import { useLogin } from "../../hooks";
 import { useState } from "react";
+import style from "./Login.module.css";
+import image from "../../logo.png.webp";
 
 const Login = ({ handleSuccess }) => {
     const LoginH = useLogin({
@@ -21,19 +23,21 @@ const Login = ({ handleSuccess }) => {
 
     if (LoginH.isLoading) return <h1>Loading</h1>;
     return (
-        <>
-            <div>
-                <form onSubmit={handleSubmit}>
+        <section className={style.section}>
+            <img className={style.logo} src={image} alt="" />
+            <div className={style.formbox}>
+                <form className={style.form} onSubmit={handleSubmit}>
+                    <h1 style={{textAlign:"center"}}>ADMIN</h1>
                     <input name="username" placeholder="USERNAME" />
                     <input
                         name="password"
                         type="password"
                         placeholder="PASSWORD"
                     />
-                    <input type="submit" name="Submit" />
+                    <input type="submit" name="Login" />
                 </form>
             </div>
-        </>
+        </section>
     );
 };
 

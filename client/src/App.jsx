@@ -5,10 +5,10 @@ import { useLoggedIn } from "./hooks";
 
 import { Login, Dashboard, Navbar, Upload } from "./sections";
 
-const AdminView = () => {
+const AdminView = ({ logout }) => {
     return (
         <>
-            <Navbar />
+            <Navbar logout={logout} />
             <Outlet />
         </>
     );
@@ -27,9 +27,7 @@ function App() {
     };
 
     useEffect(() => {
-        console.log("Effect " + loginStatus);
-        if (loginStatus === false) navigate("/login");
-        else navigate("/");
+        loginStatus ? navigate("/") : navigate("/login");
     }, [loginStatus]);
 
     if (LoginStatus.isLoading) return <h1>Loading</h1>;
@@ -40,7 +38,7 @@ function App() {
                 path="/login"
                 element={<Login handleSuccess={handleLoginSuccess} />}
             />
-            <Route element={<AdminView />}>
+            <Route element={<AdminView logout={LoginStatus.refetch} />}>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/upload" element={<Upload />} />
             </Route>

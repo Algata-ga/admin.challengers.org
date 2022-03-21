@@ -1,6 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Mina&display=swap");
+
+
 .dashboard{
     height: calc(100vh - 60px);
     width: 100%;
+    font-family: "Mina", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;

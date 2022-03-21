@@ -1,5 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Yaldevi:wght@600&display=swap");
+
+
 .page {
     width: 100%;
+    font-family: "Yaldevi", sans-serif;
     height: auto;
     display: flex;
     justify-content: center;

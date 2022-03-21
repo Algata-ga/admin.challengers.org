@@ -1,14 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Mina&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 .dashboard{
     height: calc(100vh - 60px);
     width: 100%;
-    font-family: "Mina", sans-serif;
+    font-family: "Roboto", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+.dashboard h1{
+    align-self: flex-start;
+    position: relative;
+    left: 30px;
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+.dashboard h3{
+    align-self: flex-start;
+    position: relative;
+    left: 30px;
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom: 5rem;
 }
 .cards{
     width: 95%;
@@ -34,6 +48,8 @@
 }
 
 
+
+
 @media (max-width:1338px) {
     .cards{
     grid-template-columns: repeat(3, minmax(18rem, 1fr));
@@ -43,10 +59,17 @@
     .cards{
     grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
     }
+    
+}
+@media (max-width: 768px){
+    .dashboard h1{
+        font-size: 2rem;
+    }
 }
 @media (max-width: 400px){
     .cards{
     grid-template-columns: repeat(1, minmax(15rem, 1fr));
 
     }
+    
 }

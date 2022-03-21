@@ -1,12 +1,13 @@
 import style from "./AdView.module.css";
 import { RiDeleteBin5Line, RiEdit2Line } from "react-icons/ri";
+import { useDeleteAd } from "../../hooks";
 
-const AdView = ({ ad, dash }) => {
+const AdView = ({ ad, dash, reload }) => {
     const url = dash
         ? import.meta.env.VITE_API_BASE_URL + "/ad/" + ad.filename
         : ad.media;
-    console.log(url);
 
+    const deleteAd = useDeleteAd({ onSuccess: () => reload() });
     return (
         <div className={style.card}>
             <div
@@ -21,7 +22,10 @@ const AdView = ({ ad, dash }) => {
                     )}
 
                     {dash && (
-                        <button className={style.link2}>
+                        <button
+                            className={style.link2}
+                            onClick={() => deleteAd.mutate(ad.id)}
+                        >
                             <RiDeleteBin5Line />
                         </button>
                     )}
@@ -35,4 +39,3 @@ const AdView = ({ ad, dash }) => {
 };
 
 export default AdView;
-

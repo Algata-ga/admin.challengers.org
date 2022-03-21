@@ -1,7 +1,6 @@
 import { useAds } from "../../hooks";
 import { AdView } from "../../components";
-import style from "./Dashboard.module.css"
-
+import style from "./Dashboard.module.css";
 
 const Dashboard = () => {
     const ads = useAds();
@@ -16,11 +15,16 @@ const Dashboard = () => {
             <h1>Hey Challengers</h1>
             <h3>Recent Activities</h3>
             <div className={style.cards}>
-            {ads.data.map((ad) => (
-                <div className={style.card}>
-                    <AdView ad={ad} dash={true} />
-                </div>
-            ))}
+                {ads.data.map((ad) => (
+                    <div className={style.card}>
+                        <AdView
+                            ad={ad}
+                            key={ad.id}
+                            dash={true}
+                            reload={ads.refetch}
+                        />
+                    </div>
+                ))}
             </div>
         </section>
     );

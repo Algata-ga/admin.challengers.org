@@ -59,7 +59,7 @@ def deleteAd(id):
         return False,401
     filename=db.delete_ad(id) 
     os.remove(os.path.join(app.config['UPLOAD_PATH'],filename))
-    return 'true',200
+    return jsonify({'deleted':True}),200
 
 @app.route('/getAds',methods=['GET'])
 def getAds():

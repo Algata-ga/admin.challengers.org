@@ -1,4 +1,4 @@
-//export { default as useDeleteAd } from "./deleteAd";
+export { default as useDeleteAd } from "./deleteAd";
 
 export { default as useAds } from "./getAds";
 

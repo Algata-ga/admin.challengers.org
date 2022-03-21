@@ -15,13 +15,13 @@ def connect():
 
 def get_ads() : 
     db,cur = connect()
-    cur.execute('select * from advertisements order by date desc limit 100');
+    cur.execute('select * from advertisements order by timestamp desc limit 100');
     results=cur.fetchall()
     return results;
 
 def add_ad(metadata,filename):
     db,cur=connect()
-    cur.execute('insert into advertisements(title,description,filename,date) values(\'{title}\',\'{description}\',\'{filename}\',CURDATE())'.format(title=metadata['title'],description=metadata['description'],filename=filename));
+    cur.execute('insert into advertisements(title,description,filename) values(\'{title}\',\'{description}\',\'{filename}\''.format(title=metadata['title'],description=metadata['description'],filename=filename))
     db.commit()
 
 def delete_ad(id):

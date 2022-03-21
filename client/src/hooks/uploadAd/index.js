@@ -1,11 +1,14 @@
 import { useMutation } from "react-query";
 
 const uploadAd = async (formdata) => {
-    const response = await fetch("http://localhost:5000/uploadAd", {
-        method: "POST",
-        body: formdata,
-        credentials: "include",
-    });
+    const response = await fetch(
+        import.meta.env.VITE_API_BASE_URL + "/uploadAd",
+        {
+            method: "POST",
+            body: formdata,
+            credentials: "include",
+        }
+    );
     const data = await response.json();
     return data;
 };

@@ -2,6 +2,7 @@ from flask import Flask,jsonify,request,session,send_from_directory
 import os
 import pathlib
 import time
+from flask_cors import CORS
 
 import auth
 import db
@@ -10,6 +11,10 @@ import utils
 app=Flask(__name__)
 app.secret_key = 'RANDOM STUFF'
 app.config['UPLOAD_PATH']='static'
+app.config['CORS_METHODS']=['GET']
+app.config['CORS_ORIGINS']='cryptochallengers.org'
+
+CORS(app,supports_credentials=True)
 
 # return 1 or 0
 @app.route('/isLoggedIn',methods=['GET'])

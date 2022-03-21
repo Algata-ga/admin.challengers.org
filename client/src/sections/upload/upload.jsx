@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 import { AdView } from "../../components";
 
-import { useReducer, useEffect } from "react";
-import style from "./Upload.module.css"
+import { useReducer, useEffect, useRef } from "react";
+import style from "./Upload.module.css";
 
 const Upload = () => {
     const navigate = useNavigate();
     const upload = useUpload({ onSuccess: () => navigate("/") });
+    const uploadButton = useRef();
     const [ad, updateAd] = useReducer(
         (state, action) => {
             let newState = {
@@ -28,14 +29,6 @@ const Upload = () => {
         upload.mutate(data);
         e.target.reset();
     };
-    const updatePreview = () => {
-        const elements = form.current.elements;
-        for (let i in [0, 1, 2]) {
-            ad[elements[i].name] = elements[i].value;
-        }
-        setAd(ad);
-    };
-
     useEffect(() => console.log(ad), [ad]);
     if (upload.isLoading) return <h1>Loading</h1>;
 
@@ -43,8 +36,8 @@ const Upload = () => {
         <section className={style.page}>
             <div className={style.half1}>
                 <form className={style.form} onSubmit={handleSubmit}>
-                    <label name="media">Upload</label>
                     <input
+                        id="file"
                         name="media"
                         type="file"
                         onChange={(e) =>
@@ -52,11 +45,11 @@ const Upload = () => {
                                 media: URL.createObjectURL(e.target.files[0]),
                             })
                         }
-
+                        style={{ display: "none" }}
                     />
-                    <button>
+                    <label htmlFor="file" onClick={() => uploadButton.click()}>
                         Upload File
-                    </button>
+                    </label>
                     <label name="title">Title</label>
                     <input
                         name="title"
@@ -65,7 +58,9 @@ const Upload = () => {
                     <label name="description">Description</label>
                     <input
                         name="description"
-                        onChange={(e) => updateAd({ description: e.target.value })}
+                        onChange={(e) =>
+                            updateAd({ description: e.target.value })
+                        }
                     />
                     <input type="submit" />
                 </form>
@@ -81,4 +76,3 @@ const Upload = () => {
 };
 
 export default Upload;
-

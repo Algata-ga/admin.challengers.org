@@ -40,6 +40,7 @@ const Upload = () => {
                         id="file"
                         name="media"
                         type="file"
+                        required
                         onChange={(e) =>
                             updateAd({
                                 media: URL.createObjectURL(e.target.files[0]),
@@ -47,17 +48,19 @@ const Upload = () => {
                         }
                         style={{ display: "none" }}
                     />
-                    <label htmlFor="file" onClick={() => uploadButton.click()}>
+                    <label className={style.btn} htmlFor="file" onClick={() => uploadButton.click()}>
                         Upload File
                     </label>
                     <label name="title">Title</label>
                     <input
                         name="title"
+                        max="50"
                         onChange={(e) => updateAd({ title: e.target.value })}
                     />
                     <label name="description">Description</label>
                     <input
                         name="description"
+                        max="150"
                         onChange={(e) =>
                             updateAd({ description: e.target.value })
                         }

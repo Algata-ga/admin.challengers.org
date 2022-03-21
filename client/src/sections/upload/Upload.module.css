@@ -47,6 +47,19 @@
     overflow: hidden;
 
 }
+.btn{
+    background: black;
+    width: 100px;
+    height: 45px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+}
+.btn:hover{
+    background: rgb(88, 88, 88);
+}
 
 .form ::placeholder,
 ::-webkit-input-placeholder,

@@ -37,7 +37,7 @@ def update_ad(id,metadata,filename):
     cur.execute('select * from advertisements where id = {id}'.format(id=id))
     ad=cur.fetchall()[0]
     cur.execute('update advertisements set title=\'{title}\',description=\'{description}\' where id={id}'.format(title=metadata['title'],description=metadata['description'],id=id))
-    if filename==None:
-        cur.execute('update advertisements set filename={filename}'.format(filename=filename))
+    if filename!=None:
+        cur.execute('update advertisements set filename=\'{filename}\' where id={id}'.format(filename=filename,id=id))
     db.commit()
     

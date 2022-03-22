@@ -10,7 +10,7 @@ import utils
 
 app=Flask(__name__)
 app.secret_key = 'RANDOM STUFF'
-app.config['UPLOAD_PATH']='static'
+app.config['UPLOAD_PATH']= pathlib.Path.home()/'static'
 app.config['CORS_METHODS']=['GET']
 app.config['CORS_ORIGINS']=['cryptochallengers.org','cryptochallengers.preview.algata.in']
 
@@ -66,13 +66,15 @@ def updateAd(id):
     if not authorized():
         return 'False',401
     metadata=request.form
+    filename=None
     if len(request.files) != 0:
         media=request.files['media']
+        print(media.filename)
         filename=utils.getFilename(metadata,media.filename)
+        print('^^^'+filename)
         media.save(os.path.join(app.config['UPLOAD_PATH'], filename))
         # need to delete old file...lets do that later lol
-    else :
-        filename=None
+    print(filename,'&&&&')
     db.update_ad(id,metadata,filename)
     return jsonify({'updated':True}),200
 

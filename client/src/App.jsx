@@ -41,6 +41,7 @@ function App() {
             <Route element={<AdminView logout={LoginStatus.refetch} />}>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/upload" element={<Upload />} />
+                <Route path="/update/:id" element={<Upload update={true} />} />
             </Route>
         </Routes>
     );

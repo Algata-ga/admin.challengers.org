@@ -1,6 +1,7 @@
 import style from "./AdView.module.css";
 import { RiDeleteBin5Line, RiEdit2Line } from "react-icons/ri";
 import { useDeleteAd } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 const AdView = ({ ad, dash, reload }) => {
     const url = dash
@@ -8,6 +9,7 @@ const AdView = ({ ad, dash, reload }) => {
         : ad.media;
 
     const deleteAd = useDeleteAd({ onSuccess: () => reload() });
+    const navigate = useNavigate();
     return (
         <div className={style.card}>
             <div
@@ -16,7 +18,12 @@ const AdView = ({ ad, dash, reload }) => {
             >
                 <div className={style.imghover}>
                     {dash && (
-                        <button className={style.link1}>
+                        <button
+                            className={style.link1}
+                            onClick={() =>
+                                navigate(`/update/${ad.id}`, { state: ad })
+                            }
+                        >
                             <RiEdit2Line />
                         </button>
                     )}

@@ -9,3 +9,5 @@ export { default as useLogin } from "./login";
 export { default as useUpload } from "./uploadAd";
 
 export { default as useLogout } from "./logout";
+
+export { default as useUpdateAd } from "./updateAd";

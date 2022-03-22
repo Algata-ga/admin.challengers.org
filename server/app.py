@@ -12,7 +12,7 @@ app=Flask(__name__)
 app.secret_key = 'RANDOM STUFF'
 app.config['UPLOAD_PATH']='static'
 app.config['CORS_METHODS']=['GET']
-app.config['CORS_ORIGINS']='cryptochallengers.org'
+app.config['CORS_ORIGINS']=['cryptochallengers.org','cryptochallengers.preview.algata.in']
 
 CORS(app,supports_credentials=True)
 

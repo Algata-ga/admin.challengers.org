@@ -1,5 +1,6 @@
 server/__pycache__/
 server/static/*
+client/dist/*
 client/node_modules/
 *.png
 *.jpeg

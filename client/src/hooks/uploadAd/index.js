@@ -1,6 +1,7 @@
 import { useMutation } from "react-query";
 
 const uploadAd = async (formdata) => {
+    console.log(formdata);
     const response = await fetch(
         import.meta.env.VITE_API_BASE_URL + "/uploadAd",
         {

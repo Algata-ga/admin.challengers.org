@@ -28,11 +28,8 @@ const Upload = ({ update }) => {
     );
 
     const { state } = useLocation();
-    if (state != null) {
-    }
-
     useEffect(() => {
-        if (state != null) {
+        if (update) {
             updateAd({ title: state.title });
             updateAd({ description: state.description });
             updateAd({
@@ -44,8 +41,13 @@ const Upload = ({ update }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = new FormData(e.target);
-        if (update) upload.mutate(state.id, data);
-        else upload.mutate(data);
+        console.log(data);
+        if (update) {
+            console.log(data);
+            upload.mutate({ id: state.id, formData: data });
+        } else {
+            upload.mutate(data);
+        }
         e.target.reset();
     };
     useEffect(() => console.log(ad), [ad]);
@@ -67,11 +69,7 @@ const Upload = ({ update }) => {
                         required={update ? false : true}
                         style={{ display: "none" }}
                     />
-                    <label
-                        className={style.btn}
-                        htmlFor="file"
-                        onClick={() => uploadButton.click()}
-                    >
+                    <label className={style.btn} htmlFor="file">
                         Upload File
                     </label>
                     <label name="title">Title</label>

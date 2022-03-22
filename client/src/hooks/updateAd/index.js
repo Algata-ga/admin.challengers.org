@@ -1,11 +1,13 @@
 import { useMutation } from "react-query";
 
-async function updateAd(id, formData) {
+async function updateAd(newAd) {
+    const { id, formData } = newAd;
     const response = await fetch(
         import.meta.env.VITE_API_BASE_URL + `/updateAd/${id}`,
         {
             method: "POST",
-            data: formData,
+            body: formData,
+            credentials: "include",
         }
     );
     const data = await response.json();
@@ -13,6 +15,8 @@ async function updateAd(id, formData) {
 }
 
 const useUpdateAd = (settings) =>
-    useMutation((id, formData) => updateAd(id, formData), settings);
+    useMutation((newAd) => {
+        updateAd(newAd);
+    }, settings);
 
 export default useUpdateAd;

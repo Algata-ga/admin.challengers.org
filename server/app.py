@@ -45,7 +45,7 @@ def authorized():
 @app.route('/uploadAd',methods=['POST'])
 def uploadAd():
     if not authorized():
-        return False,401
+        return 'False',401
     metadata=request.form
     media=request.files['media']
     filename=utils.getFilename(metadata,media.filename)
@@ -53,13 +53,28 @@ def uploadAd():
     media.save(os.path.join(app.config['UPLOAD_PATH'], filename))
     return jsonify({'success':True}),200
 
-@app.route('/deleteAd/<id>',methods=['GET'])
+@app.route('/deleteAd/<id>',methods=['POST'])
 def deleteAd(id):
     if not authorized():
-        return False,401
+        return 'False',401
     filename=db.delete_ad(id) 
     os.remove(os.path.join(app.config['UPLOAD_PATH'],filename))
     return jsonify({'deleted':True}),200
+
+@app.route('/updateAd/<id>',methods=['POST'])
+def updateAd(id):
+    if not authorized():
+        return 'False',401
+    metadata=request.form
+    if len(request.files) != 0:
+        media=request.files['media']
+        filename=utils.getFilename(metadata,media.filename)
+        media.save(os.path.join(app.config['UPLOAD_PATH'], filename))
+        # need to delete old file...lets do that later lol
+    else :
+        filename=None
+    db.update_ad(id,metadata,filename)
+    return jsonify({'updated':True}),200
 
 @app.route('/getAds',methods=['GET'])
 def getAds():

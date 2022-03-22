@@ -21,7 +21,7 @@ def get_ads() :
 
 def add_ad(metadata,filename):
     db,cur=connect()
-    cur.execute('insert into advertisements(title,description,filename) values(\'{title}\',\'{description}\',\'{filename}\''.format(title=metadata['title'],description=metadata['description'],filename=filename))
+    cur.execute('insert into advertisements(title,description,filename) values(\'{title}\',\'{description}\',\'{filename}\')'.format(title=metadata['title'],description=metadata['description'],filename=filename))
     db.commit()
 
 def delete_ad(id):
@@ -31,4 +31,13 @@ def delete_ad(id):
     cur.execute('delete from advertisements where id = {id}'.format(id=id))
     db.commit()
     return results[0]['filename']
+
+def update_ad(id,metadata,filename):
+    db,cur=connect()
+    cur.execute('select * from advertisements where id = {id}'.format(id=id))
+    ad=cur.fetchall()[0]
+    cur.execute('update advertisements set title=\'{title}\',description=\'{description}\' where id={id}'.format(title=metadata['title'],description=metadata['description'],id=id))
+    if filename==None:
+        cur.execute('update advertisements set filename={filename}'.format(filename=filename))
+    db.commit()
     

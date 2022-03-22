@@ -83,7 +83,7 @@ def getAds():
     ads=db.get_ads()
     return jsonify(ads),200
 
-@app.route('/ad/<filename>')
+@app.route('/static/<filename>')
 def getAd(filename):
     return send_from_directory(app.config['UPLOAD_PATH'], filename)
 

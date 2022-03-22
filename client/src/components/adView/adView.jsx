@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const AdView = ({ ad, dash, reload }) => {
     const url = dash
-        ? import.meta.env.VITE_API_BASE_URL + "/ad/" + ad.filename
+        ? import.meta.env.VITE_API_BASE_URL + "/static/" + ad.filename
         : ad.media;
 
     const deleteAd = useDeleteAd({ onSuccess: () => reload() });

@@ -12,7 +12,7 @@ const Dashboard = () => {
     console.log(ads.data);
     return (
         <section className={style.dashboard}>
-            <h1>Hey Challengers</h1>
+            <h1>Hey Challengers,</h1>
             <h3>Recent Activities</h3>
             <div className={style.cards}>
                 {ads.data.map((ad) => (

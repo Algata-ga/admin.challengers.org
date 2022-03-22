@@ -34,7 +34,9 @@ const Upload = ({ update }) => {
             updateAd({ description: state.description });
             updateAd({
                 media:
-                    import.meta.env.VITE_API_BASE_URL + "/ad/" + state.filename,
+                    import.meta.env.VITE_API_BASE_URL +
+                    "/static/" +
+                    state.filename,
             });
         }
     }, []);
@@ -61,6 +63,7 @@ const Upload = ({ update }) => {
                         id="file"
                         name="media"
                         type="file"
+                        accept="image/*,video/*"
                         onChange={(e) =>
                             updateAd({
                                 media: URL.createObjectURL(e.target.files[0]),

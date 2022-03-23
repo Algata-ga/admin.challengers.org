@@ -19,9 +19,9 @@ def get_ads() :
     results=cur.fetchall()
     return results;
 
-def add_ad(metadata,filename):
+def add_ad(metadata,filename,isVideo,duration):
     db,cur=connect()
-    cur.execute('insert into advertisements(title,description,filename) values(\'{title}\',\'{description}\',\'{filename}\')'.format(title=metadata['title'],description=metadata['description'],filename=filename))
+    cur.execute('insert into advertisements(title,description,filename,isVideo,duration) values(\'{title}\',\'{description}\',\'{filename}\',{isVideo},{duration})'.format(title=metadata['title'],description=metadata['description'],filename=filename,isVideo=isVideo,duration=duration))
     db.commit()
 
 def delete_ad(id):
@@ -32,12 +32,12 @@ def delete_ad(id):
     db.commit()
     return results[0]['filename']
 
-def update_ad(id,metadata,filename):
+def update_ad(id,metadata,filename,isVideo,duration):
     db,cur=connect()
     cur.execute('select * from advertisements where id = {id}'.format(id=id))
     ad=cur.fetchall()[0]
     cur.execute('update advertisements set title=\'{title}\',description=\'{description}\' where id={id}'.format(title=metadata['title'],description=metadata['description'],id=id))
     if filename!=None:
-        cur.execute('update advertisements set filename=\'{filename}\' where id={id}'.format(filename=filename,id=id))
+        cur.execute('update advertisements set filename=\'{filename}\',duration={duration},isVideo={isVideo} where id={id}'.format(filename=filename,id=id,isVideo=isVideo,duration=duration))
     db.commit()
     

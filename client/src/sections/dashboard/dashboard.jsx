@@ -16,10 +16,9 @@ const Dashboard = () => {
             <h3>Recent Activities</h3>
             <div className={style.cards}>
                 {ads.data.map((ad) => (
-                    <div className={style.card}>
+                    <div className={style.card}   key={ad.id}>
                         <AdView
                             ad={ad}
-                            key={ad.id}
                             dash={true}
                             reload={ads.refetch}
                         />

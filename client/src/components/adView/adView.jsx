@@ -13,10 +13,9 @@ const AdView = ({ ad, dash, reload }) => {
     return (
         <div className={style.card}>
             <div
-                className={style.img}
-                style={{ backgroundImage: `url(${url})` }}
-            >
-                <div className={style.imghover}>
+                className={style.img} style={{ background: ad.isVideo? '':  `url(${url})`,backgroundPosition: 'center',backgroundSize: "cover",backgroundRepeat: "no-repeat"}}>
+                    {ad.isVideo && <video src={url} autoPlay muted loop/> }
+                <div className={style.imghover+' '+style.videohover}>
                     {dash && (
                         <button
                             className={style.link1}
@@ -41,7 +40,7 @@ const AdView = ({ ad, dash, reload }) => {
 
             <h4>{ad.title}</h4>
             <p className={style.p}>{ad.description}</p>
-        </div>
+        </div >
     );
 };
 

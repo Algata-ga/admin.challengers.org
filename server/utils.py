@@ -8,7 +8,6 @@ def getFilename(metadata,filename):
     name = metadata['title'].replace(' ','')+str(int(time.time()))+'.'+extension
     return name
 
-
 def isVideoFile(fileName):
     mimestart = mimetypes.guess_type(fileName)[0]
     if mimestart != None:
@@ -19,12 +18,10 @@ def isVideoFile(fileName):
 
 def getVideoDuration(filename):
     result = subprocess.check_output(
-            f'ffprobe -v quiet -show_streams -select_streams v:0 -of json "{filename}"',
+            f'mediainfo --Output=JSON "{filename}"',
             shell=True).decode()
-    fields = json.loads(result)['streams'][0]
-    duration = fields['tags']['DURATION']
-    hours,minutes,seconds_ms = duration.split(':')
-    seconds,ms = seconds_ms.split('.')
-    return (int(hours)*60*60 + int(minutes)*60 + int(seconds))
+    tracks = json.loads(result)['media']['track']
+    duration = tracks[0]['Duration']
+    return (int(float(duration))+1)
 
 

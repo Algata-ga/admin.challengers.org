@@ -55,7 +55,9 @@ def uploadAd():
         duration = utils.getVideoDuration(os.path.join(app.config['UPLOAD_PATH'], filename))
     else:
         duration = 5
-    db.add_ad(metadata,filename,isVideo,duration)
+    oldFileName=db.add_ad(metadata,filename,isVideo,duration)
+    if oldFileName != None:
+        os.remove(os.path.join(app.config['UPLOAD_PATH'],oldFileName))
     return jsonify({'success':True}),200
 
 @app.route('/deleteAd/<id>',methods=['POST'])

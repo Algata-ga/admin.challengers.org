@@ -39,5 +39,7 @@ def update_ad(id,metadata,filename,isVideo,duration):
     cur.execute('update advertisements set title=\'{title}\',description=\'{description}\' where id={id}'.format(title=metadata['title'],description=metadata['description'],id=id))
     if filename!=None:
         cur.execute('update advertisements set filename=\'{filename}\',duration={duration},isVideo={isVideo} where id={id}'.format(filename=filename,id=id,isVideo=isVideo,duration=duration))
+        return ad['filename']
     db.commit()
+    return None
     

@@ -8,20 +8,34 @@ const AdView = ({ ad, dash, reload }) => {
         ? import.meta.env.VITE_API_BASE_URL + "/static/" + ad.filename
         : ad.media;
 
+    console.log("Info : #########");
+    console.log(ad);
+    console.log("#########");
+
     const deleteAd = useDeleteAd({ onSuccess: () => reload() });
     const navigate = useNavigate();
     return (
         <div className={style.card}>
             <div
-                className={style.img} style={{ background: ad.isVideo? '':  `url(${url})`,backgroundPosition: 'center',backgroundSize: "cover",backgroundRepeat: "no-repeat"}}>
-                    {ad.isVideo && <video src={url} autoPlay muted loop/> }
-                <div className={style.imghover+' '+style.videohover}>
+                className={style.img}
+                style={{
+                    background: ad.isVideo ? "" : `url(${url})`,
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                }}
+            >
+                {ad.isVideo && <video src={url} autoPlay muted loop />}
+                <div className={style.imghover + " " + style.videohover}>
                     {dash && (
                         <button
                             className={style.link1}
-                            onClick={() =>
-                                navigate(`/update/${ad.id}`, { state: ad })
-                            }
+                            onClick={() => {
+                                console.log("Click : ##############");
+                                console.log(ad);
+                                navigate(`/update/${ad.id}`, { state: ad });
+                                console.log("#################");
+                            }}
                         >
                             <RiEdit2Line />
                         </button>
@@ -40,7 +54,7 @@ const AdView = ({ ad, dash, reload }) => {
 
             <h4>{ad.title}</h4>
             <p className={style.p}>{ad.description}</p>
-        </div >
+        </div>
     );
 };
 

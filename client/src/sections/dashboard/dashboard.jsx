@@ -4,24 +4,15 @@ import style from "./Dashboard.module.css";
 
 const Dashboard = () => {
     const ads = useAds();
-    const handleDelete = (id) => {
-        console.log("delete" + id);
-    };
-
     if (ads.isLoading) return <h1>Loading</h1>;
-    console.log(ads.data);
     return (
         <section className={style.dashboard}>
             <h1>Hey Challengers,</h1>
             <h3>Recent Activities</h3>
             <div className={style.cards}>
                 {ads.data.map((ad) => (
-                    <div className={style.card}   key={ad.id}>
-                        <AdView
-                            ad={ad}
-                            dash={true}
-                            reload={ads.refetch}
-                        />
+                    <div className={style.card} key={ad.id}>
+                        <AdView ad={ad} dash={true} reload={ads.refetch} />
                     </div>
                 ))}
             </div>

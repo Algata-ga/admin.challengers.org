@@ -19,6 +19,7 @@ const Upload = ({ update }) => {
                 title: state.title,
                 description: state.description,
                 media: state.media,
+                isVideo: state.isVideo,
             };
             newState[Object.keys(action)[0]] = action[Object.keys(action)[0]];
             console.log(state);
@@ -38,6 +39,7 @@ const Upload = ({ update }) => {
                     "/static/" +
                     state.filename,
             });
+            updateAd({ isVideo: state.isVideo });
         }
     }, []);
     const handleSubmit = (e) => {
@@ -64,11 +66,15 @@ const Upload = ({ update }) => {
                         name="media"
                         type="file"
                         accept="image/*,video/*"
-                        onChange={(e) =>
+                        onChange={(e) => {
                             updateAd({
                                 media: URL.createObjectURL(e.target.files[0]),
-                            })
-                        }
+                            });
+                            updateAd({
+                                isVideo:
+                                    e.target.files[0].type.includes("video"),
+                            });
+                        }}
                         required={update ? false : true}
                         style={{ display: "none" }}
                     />

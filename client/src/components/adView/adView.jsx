@@ -8,10 +8,6 @@ const AdView = ({ ad, dash, reload }) => {
         ? import.meta.env.VITE_API_BASE_URL + "/static/" + ad.filename
         : ad.media;
 
-    console.log("Info : #########");
-    console.log(ad);
-    console.log("#########");
-
     const deleteAd = useDeleteAd({ onSuccess: () => reload() });
     const navigate = useNavigate();
     return (
@@ -25,17 +21,16 @@ const AdView = ({ ad, dash, reload }) => {
                     backgroundRepeat: "no-repeat",
                 }}
             >
-                {ad.isVideo && <video src={url} autoPlay muted loop />}
+                {ad.isVideo && (
+                    <video src={url} autoPlay={true} muted={true} loop={true} />
+                )}
                 <div className={style.imghover + " " + style.videohover}>
                     {dash && (
                         <button
                             className={style.link1}
-                            onClick={() => {
-                                console.log("Click : ##############");
-                                console.log(ad);
-                                navigate(`/update/${ad.id}`, { state: ad });
-                                console.log("#################");
-                            }}
+                            onClick={() =>
+                                navigate(`/update/${ad.id}`, { state: ad })
+                            }
                         >
                             <RiEdit2Line />
                         </button>

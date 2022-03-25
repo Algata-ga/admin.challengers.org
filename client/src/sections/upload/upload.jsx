@@ -12,7 +12,6 @@ const Upload = ({ update }) => {
         ? useUpdateAd({ onSuccess: () => navigate("/") })
         : useUpload({ onSuccess: () => navigate("/") });
 
-    const uploadButton = useRef();
     const [ad, updateAd] = useReducer(
         (state, action) => {
             let newState = {
@@ -84,14 +83,14 @@ const Upload = ({ update }) => {
                     <label name="title">Title</label>
                     <input
                         name="title"
-                        max="50"
+                        max="150"
                         onChange={(e) => updateAd({ title: e.target.value })}
                         value={ad.title}
                     />
                     <label name="description">Description</label>
                     <input
                         name="description"
-                        max="150"
+                        max="600"
                         onChange={(e) =>
                             updateAd({ description: e.target.value })
                         }

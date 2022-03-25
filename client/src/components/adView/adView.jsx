@@ -21,9 +21,7 @@ const AdView = ({ ad, dash, reload }) => {
                     backgroundRepeat: "no-repeat",
                 }}
             >
-                {ad.isVideo && (
-                    <video src={url} autoPlay={true} muted={true} loop={true} />
-                )}
+                {ad.isVideo && <video src={url} autoPlay muted loop />}
                 <div className={style.imghover + " " + style.videohover}>
                     {dash && (
                         <button

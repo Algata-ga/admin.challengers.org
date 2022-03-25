@@ -36,10 +36,11 @@ def update_ad(id,metadata,filename,isVideo,duration):
     db,cur=connect()
     cur.execute('select * from advertisements where id = {id}'.format(id=id))
     ad=cur.fetchall()[0]
+    oldFileName=None
     cur.execute('update advertisements set title=\'{title}\',description=\'{description}\' where id={id}'.format(title=metadata['title'],description=metadata['description'],id=id))
     if filename!=None:
         cur.execute('update advertisements set filename=\'{filename}\',duration={duration},isVideo={isVideo} where id={id}'.format(filename=filename,id=id,isVideo=isVideo,duration=duration))
-        return ad['filename']
+        oldFileName=ad['filename']
     db.commit()
-    return None
+    return oldFileName
     

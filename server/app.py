@@ -55,9 +55,7 @@ def uploadAd():
         duration = utils.getVideoDuration(os.path.join(app.config['UPLOAD_PATH'], filename))
     else:
         duration = 5
-    oldFileName=db.add_ad(metadata,filename,isVideo,duration)
-    if oldFileName != None:
-        os.remove(os.path.join(app.config['UPLOAD_PATH'],oldFileName))
+    db.add_ad(metadata,filename,isVideo,duration)
     return jsonify({'success':True}),200
 
 @app.route('/deleteAd/<id>',methods=['POST'])
@@ -76,9 +74,9 @@ def updateAd(id):
     filename=None
     duration=None
     isVideo=None
-    if len(request.files) != 0:
+    if request.files['media'].filename:
         media=request.files['media']
-        print(media.filename)
+        print(media.filename +'pls be empty')
         filename=utils.getFilename(metadata,media.filename)
         print('^^^'+filename)
         media.save(os.path.join(app.config['UPLOAD_PATH'], filename))
@@ -87,8 +85,9 @@ def updateAd(id):
             duration = utils.getVideoDuration(os.path.join(app.config['UPLOAD_PATH'], filename))
         else:
             duration = 5
-        # need to delete old file...lets do that later lol
-    db.update_ad(id,metadata,filename,isVideo,duration)
+    oldFileName = db.update_ad(id,metadata,filename,isVideo,duration)
+    if oldFileName != None:
+        os.remove(os.path.join(app.config['UPLOAD_PATH'],oldFileName))
     return jsonify({'updated':True}),200
 
 @app.route('/getAds',methods=['GET'])

@@ -93,12 +93,12 @@ Ad
 
 ```json
 {
-    id : 1,
-    title : "name",
-    description : "stuff...",
-    filename : "hello.png",
-    isVideo: true,
-    duration: 5
+    "id" : 1,
+    "title" : "name",
+    "description" : "stuff...",
+    "filename" : "hello.png",
+    "isVideo": true,
+    "duration": 5
 }
 ```
 
